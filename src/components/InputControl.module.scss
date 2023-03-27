@@ -1,0 +1,18 @@
+.inputControl {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 30px;
+  padding: 0 10px;
+}
