@@ -1,0 +1,21 @@
+.pokemonCard {
+  border: 1px solid #ffffff22;
+  background-color: #33333311;
+  width: 200px;
+  border-radius: 10px;
+  color: black;
+  padding: 1rem;
+  border: 1px solid #33333311;
+}
+
+.pokemonCardHovered {
+  background-color: lightblue;
+}
+
+.pokemonType {
+  border: 1px solid #33333311;
+  display: inline-block;
+  padding: 2.5px 5px;
+  border-radius: 5px;
+  background-color: pink;
+}
