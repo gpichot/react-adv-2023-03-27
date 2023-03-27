@@ -1,7 +1,7 @@
 import pokemons from "@/mocks/pokemons";
 
-import Button from "./components/Button";
-import PokemonCard from "./features/pokemons/components/PokemonCard";
+import { PokemonCard } from "./features/pokemons";
+import { Button } from "./components";
 
 import "./globals.scss";
 import styles from "./App.module.scss";

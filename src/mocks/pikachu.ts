@@ -1,4 +1,4 @@
-import { PokemonDetail } from "@/features/pokemons/types";
+import { PokemonDetail } from "@/features/pokemons";
 
 export default {
   id: 25,
