@@ -1,11 +1,16 @@
+import React from "react";
+
 import styles from "./InputControl.module.scss";
 
 type InputControlProps = {
   label: string;
   name: string;
-} & React.ComponentPropsWithoutRef<"input">;
+} & React.ComponentProps<"input">;
 
-export default function InputControl(props: InputControlProps) {
+function InputControl(
+  props: InputControlProps,
+  ref: React.Ref<HTMLInputElement>
+) {
   const { label, name, id, ...inputProps } = props;
   const finalId = id || name;
   return (
@@ -14,6 +19,7 @@ export default function InputControl(props: InputControlProps) {
         {label}
       </label>
       <input
+        ref={ref}
         className={styles.input}
         name={name}
         id={finalId}
@@ -22,3 +28,5 @@ export default function InputControl(props: InputControlProps) {
     </div>
   );
 }
+
+export default React.forwardRef(InputControl);

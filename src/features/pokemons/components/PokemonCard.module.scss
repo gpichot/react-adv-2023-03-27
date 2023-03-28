@@ -19,3 +19,22 @@
   border-radius: 5px;
   background-color: pink;
 }
+
+.detailsButton {
+  display: inline-block;
+  margin: 10px auto;
+}
+
+.pokemonCardImage {
+  position: relative;
+}
+
+.pokeballImage {
+  height: 64px;
+  width: 64px;
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  z-index: 1000;
+  transform: translate(50%, 50%);
+}

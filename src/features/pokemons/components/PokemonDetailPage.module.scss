@@ -1,0 +1,33 @@
+.pokemonStatsGroup {
+  display: flex;
+  flex-direction: row;
+
+  border: 1px solid #33333322;
+  border-radius: 4px;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.pokemonStatsGroupItem {
+  flex: 1;
+  min-width: 100px;
+  padding: 1rem 0.5rem;
+  border-right: 1px solid #33333322;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.pokemonStatsGroupItemLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.pokemonStatsGroupItemValue {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333333;
+  font-size: 24px;
+}

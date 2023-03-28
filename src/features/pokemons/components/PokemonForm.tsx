@@ -18,6 +18,11 @@ export default function PokemonForm({ onSubmit }: PokemonFormProps) {
   const [type, setType] = React.useState("");
   const [width, setWidth] = React.useState("");
   const [height, setHeight] = React.useState("");
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +36,7 @@ export default function PokemonForm({ onSubmit }: PokemonFormProps) {
   return (
     <form onSubmit={handleSubmit}>
       <InputControl
+        ref={inputRef}
         required
         label="Name"
         name="name"

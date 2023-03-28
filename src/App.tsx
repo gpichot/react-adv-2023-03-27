@@ -1,14 +1,16 @@
 import { Link, Route, Switch } from "react-router-dom";
 
-import { PokemonForm } from "./features/pokemons";
+import { PokemonDetailPage, PokemonForm } from "./features/pokemons";
 import PokemonList from "./features/pokemons/components/PokemonList";
+import { usePokedexContext } from "./features/pokemons/PokedexContext";
 
 import "./globals.scss";
 
 export default function App() {
+  const pokedex = usePokedexContext();
   return (
     <div>
-      <h1>Pokedex</h1>
+      <h1>Pokedex ({pokedex.pokemonIds.length} pokemon(s))</h1>
       <nav style={{ display: "flex", justifyContent: "space-between" }}>
         <Link to="/">Home</Link>
         <Link to="/new">New Pokemon</Link>
@@ -20,6 +22,9 @@ export default function App() {
         </Route>
         <Route path="/new">
           <PokemonForm />
+        </Route>
+        <Route path="/pokemons/:pokemonId">
+          <PokemonDetailPage />
         </Route>
         <Route path="/funnel">
           <Funnel />
