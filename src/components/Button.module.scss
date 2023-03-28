@@ -1,7 +1,14 @@
+.button {
+  border: 1px solid #33333322;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
 .buttonPrimary {
-  background-color: lightblue;
+  background-color: rgb(16, 168, 219);
+  color: white;
 }
 
 .buttonSecondary {
-  background-color: violet;
+  background-color: rgb(232, 26, 232);
+  color: white;
 }

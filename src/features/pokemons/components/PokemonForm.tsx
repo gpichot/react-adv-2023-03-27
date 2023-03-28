@@ -2,14 +2,16 @@ import React from "react";
 
 import { Button, InputControl } from "@/components";
 
-type PokemonFormProps = {
+import styles from "./PokemonForm.module.scss";
+
+interface PokemonFormProps {
   onSubmit?: (pokemon: {
     name: string;
     type: string;
     width: string;
     height: string;
   }) => void;
-};
+}
 
 export default function PokemonForm({ onSubmit }: PokemonFormProps) {
   const [name, setName] = React.useState("");
@@ -24,9 +26,12 @@ export default function PokemonForm({ onSubmit }: PokemonFormProps) {
     onSubmit?.({ name, type, width, height });
   };
 
+  const isValid = Boolean(name && type);
+
   return (
     <form onSubmit={handleSubmit}>
       <InputControl
+        required
         label="Name"
         name="name"
         value={name}
@@ -50,7 +55,9 @@ export default function PokemonForm({ onSubmit }: PokemonFormProps) {
         value={height}
         onChange={(e) => setHeight(e.target.value)}
       />
-      <Button type="submit">Submit</Button>
+      <Button type="submit" disabled={!isValid} className={styles.buttonSubmit}>
+        Submit
+      </Button>
     </form>
   );
 }

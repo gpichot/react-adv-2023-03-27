@@ -9,6 +9,8 @@ interface ButtonProps
   onClick?: (value: string) => void;
 }
 
+type InputProps = React.ComponentPropsWithoutRef<"input">;
+
 export default function Button({
   variant = "primary",
   className,
@@ -17,6 +19,7 @@ export default function Button({
   return (
     <button
       className={classnames(
+        styles.button,
         {
           [styles.buttonPrimary]: variant === "primary",
           [styles.buttonSecondary]: variant === "secondary",
