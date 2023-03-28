@@ -10,21 +10,61 @@ export const PokedexContext = React.createContext<
   PokedexContextType | undefined
 >(undefined);
 
+type PokedexState = {
+  pokemons: (number | string)[];
+};
+
+function createInitialPokedex(): PokedexState {
+  return { pokemons: [] };
+}
+
+type PokedexAction =
+  | { type: "ADD_POKEMON"; payload: number | string }
+  | { type: "REMOVE_POKEMON"; payload: number | string };
+
+function pokedexReducer(state: PokedexState, action: PokedexAction) {
+  switch (action.type) {
+    case "ADD_POKEMON":
+      return { ...state, pokemons: [...state.pokemons, action.payload] };
+    case "REMOVE_POKEMON":
+      return {
+        ...state,
+        pokemons: state.pokemons.filter((id) => id !== action.payload),
+      };
+    default:
+      return state;
+  }
+}
+
+export function addPokemon(
+  dispatch: React.Dispatch<PokedexAction>,
+  pokemonId: number | string
+) {
+  dispatch({ type: "ADD_POKEMON", payload: pokemonId });
+}
+
+export function removePokemon(
+  dispatch: React.Dispatch<PokedexAction>,
+  pokemonId: number | string
+) {
+  dispatch({ type: "REMOVE_POKEMON", payload: pokemonId });
+}
+
 export function PokedexProvider({ children }: { children: React.ReactNode }) {
-  const [pokemonIds, setPokemonIds] = React.useState<(number | string)[]>([]);
+  const [pokedex, dispatch] = React.useReducer(
+    pokedexReducer,
+    createInitialPokedex()
+  );
 
-  const addPokemon = (pokemonId: number | string) => {
-    setPokemonIds((currentPokemonIds) => [...currentPokemonIds, pokemonId]);
-  };
-
-  const removePokemon = (pokemonId: number | string) => {
-    setPokemonIds((currentPokemonIds) =>
-      currentPokemonIds.filter((id) => id !== pokemonId)
-    );
+  const contextValue = {
+    pokemonIds: pokedex.pokemons,
+    addPokemon: (pokemonId: number | string) => addPokemon(dispatch, pokemonId),
+    removePokemon: (pokemonId: number | string) =>
+      removePokemon(dispatch, pokemonId),
   };
 
   return (
-    <PokedexContext.Provider value={{ pokemonIds, addPokemon, removePokemon }}>
+    <PokedexContext.Provider value={contextValue}>
       {children}
     </PokedexContext.Provider>
   );
